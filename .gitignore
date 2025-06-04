@@ -24,4 +24,4 @@ Thumbs.db
 coverage/
 
 # Output from tests
-output/node_modules/
+output/
