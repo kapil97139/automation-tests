@@ -12,11 +12,12 @@ exports.config = {
   },
   include: {
     I: './steps_file.js',
-    // loginPage: './pages/loginPage.js',
-    // productPage: './pages/productPage.js',
-    // cartPage: './pages/cartPage.js',
-    // checkoutPage: './pages/checkoutPage.js',
-    // homePage: './pages/homePage.js'
+    loginPage: './pages/loginPage.js',
+    productPage: './pages/productPage.js',
+    cartPage: './pages/cartPage.js',
+    checkoutPage: './pages/checkoutPage.js',
+    homePage: './pages/homePage.js',
+    contactPage: './pages/contactPage.js'
   },
   name: 'codecept-playwright-pom'
 };

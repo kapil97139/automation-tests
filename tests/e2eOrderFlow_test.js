@@ -5,6 +5,8 @@ const loginPage = require('../pages/loginPage');
 const productPage = require('../pages/productPage');
 const cartPage = require('../pages/cartPage');
 const checkoutPage = require('../pages/checkoutPage');
+const contactPage = require('../pages/contactPage');
+const { generateContactData } = require('../data/contactData');
 
 Feature('E2E Order Flow');
 
@@ -34,4 +36,24 @@ Scenario('Login, Add Product, Checkout, and Place Order', async ({ I }) => {
   });
 
   checkoutPage.verifyOrderSuccess();
+  checkoutPage.logoutAccount();
+});
+
+//Feature('E2E Order Flow with Contact Us');
+
+Scenario('Fill and submit Contact Us form with random data', async ({ I,}) => {
+  const contactData = generateContactData();
+
+  // // Login first
+  // await loginPage.login(process.env.EMAIL, process.env.PASSWORD);
+  // I.see('Logged in as'); // Verification
+
+  // Then go to contact page
+  I.amOnPage('/');
+  await contactPage.openContactUs();
+
+  // Fill and submit form
+  await contactPage.fillContactForm(contactData);
+  await contactPage.submitForm();
+  await contactPage.verifySuccess();
 });

@@ -24,5 +24,14 @@ module.exports = {
   verifyOrderSuccess() {
     I.waitForElement('h2', 5);
     I.see('Congratulations! Your order has been confirmed!');
+  },
+
+  logoutAccount(){
+    I.wait(3);
+    I.click('//a[contains(text(), "Logout")]');
+
   }
 };
+
+ 
+
