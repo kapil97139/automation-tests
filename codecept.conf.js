@@ -1,24 +1,22 @@
-const { setHeadlessWhen, setCommonPlugins } = require('@codeceptjs/configure');
-// turn on headless mode when running with HEADLESS=true environment variable
-// export HEADLESS=true && npx codeceptjs run
-setHeadlessWhen(process.env.HEADLESS);
+require('dotenv').config(); // to load env vars
 
-// enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
-setCommonPlugins();
-
-/** @type {CodeceptJS.MainConfig} */
 exports.config = {
-  tests: './*_test.js',
+  tests: './tests/*_test.js',
   output: './output',
   helpers: {
     Playwright: {
-      browser: 'chromium',
-      url: 'http://localhost',
-      show: true
+      url: 'https://automationexercise.com',
+      show: true,
+      browser: 'chromium'
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    // loginPage: './pages/loginPage.js',
+    // productPage: './pages/productPage.js',
+    // cartPage: './pages/cartPage.js',
+    // checkoutPage: './pages/checkoutPage.js',
+    // homePage: './pages/homePage.js'
   },
-  name: 'automation-tests'
-}
+  name: 'codecept-playwright-pom'
+};
