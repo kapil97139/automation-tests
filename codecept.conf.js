@@ -7,7 +7,7 @@ exports.config = {
     Playwright: {
       url: 'https://automationexercise.com',
       show: true,
-      browser: 'chromium'
+      browser: 'chromium',
     }
   },
   include: {
