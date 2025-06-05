@@ -6,7 +6,9 @@ const productPage = require('../pages/productPage');
 const cartPage = require('../pages/cartPage');
 const checkoutPage = require('../pages/checkoutPage');
 const contactPage = require('../pages/contactPage');
+const signUpPage = require('../pages/signUpPage');
 const { generateContactData } = require('../data/contactData');
+const { generateUserData } = require('../data/userData');
 
 Feature('E2E Order Flow');
 
@@ -41,12 +43,8 @@ Scenario('Login, Add Product, Checkout, and Place Order', async ({ I }) => {
 
 //Feature('E2E Order Flow with Contact Us');
 
-Scenario('Fill and submit Contact Us form with random data', async ({ I,}) => {
+Scenario('Fill and submit Contact Us form with random data', async ({ I }) => {
   const contactData = generateContactData();
-
-  // // Login first
-  // await loginPage.login(process.env.EMAIL, process.env.PASSWORD);
-  // I.see('Logged in as'); // Verification
 
   // Then go to contact page
   I.amOnPage('/');
@@ -58,10 +56,15 @@ Scenario('Fill and submit Contact Us form with random data', async ({ I,}) => {
   await contactPage.verifySuccess();
 });
 
-Scenario('Submit form with invalid email', async ({ I }) => {
-  const contactData = generateContactData();
-  I.amOnPage('/');
-  await contactPage.submitFormWithInvalidEmail(contactData);
+Scenario('User signs up and logs in with the same credentials @signup', () => {
+  const user = generateUserData(); // generate random data
 
-  I.see('Home  Products Cart Signup / Login Test Cases API Testing Video Tutorials Contact us CONTACT US Note: Below contact form is for testing purpose. GET IN TOUCH FEEDBACK FOR US We really appreciate your response to our website. Kindly share your feedback with us at feedback@automationexercise.com. If you have any suggestion areas or improvements, do let us know. We will definitely work on it. Thank you SUBSCRIPTION Get the most recent updates from our site and be updated your self... Copyright © 2021 All rights reserved'); // adjust text as per UI
+  // ---- SIGN UP FLOW ----
+  signUpPage.openSignUpPage();
+  signUpPage.fillInitialSignUpForm({ name: user.name, email: user.email });
+  
+  signUpPage.fillAccountInformation(user);
+
+  // ---- VERIFY ACCOUNT CREATED ----
+   homePage.verifyAccountCreated();
 });
