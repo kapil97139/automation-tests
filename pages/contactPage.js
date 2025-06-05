@@ -38,5 +38,12 @@ module.exports = {
   verifySuccess() {
     I.waitForElement(this.locators.successMessage, 5);
     I.see('Success! Your details have been submitted successfully.');
+  },
+
+    async submitFormWithInvalidEmail(data) {
+    this.openContactUs();
+    data.email = 'invalid-email';
+    this.fillContactForm(data);
+    this.submitForm();
   }
 };

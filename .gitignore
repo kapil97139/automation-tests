@@ -25,3 +25,7 @@ coverage/
 
 # Output from tests
 output/
+
+reports/
+allure-results/
+allure-report/

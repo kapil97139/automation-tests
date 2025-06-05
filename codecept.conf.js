@@ -1,4 +1,4 @@
-require('dotenv').config(); // to load env vars
+require('dotenv').config(); // Load env variables
 
 exports.config = {
   tests: './tests/*_test.js',
@@ -18,6 +18,25 @@ exports.config = {
     checkoutPage: './pages/checkoutPage.js',
     homePage: './pages/homePage.js',
     contactPage: './pages/contactPage.js'
+  },
+  plugins: {
+    allure: {
+      enabled: true,
+      require: '@codeceptjs/allure-legacy',
+      outputDir: 'output/allure-results',
+    },
+    screenshotOnFail: {
+      enabled: true
+    },
+    tryTo: {
+      enabled: true
+    },
+    retryFailedStep: {
+      enabled: true
+    },
+    retryTo: {
+      enabled: true
+    }
   },
   name: 'codecept-playwright-pom'
 };

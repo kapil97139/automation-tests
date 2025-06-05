@@ -57,3 +57,11 @@ Scenario('Fill and submit Contact Us form with random data', async ({ I,}) => {
   await contactPage.submitForm();
   await contactPage.verifySuccess();
 });
+
+Scenario('Submit form with invalid email', async ({ I }) => {
+  const contactData = generateContactData();
+  I.amOnPage('/');
+  await contactPage.submitFormWithInvalidEmail(contactData);
+
+  I.see('Home  Products Cart Signup / Login Test Cases API Testing Video Tutorials Contact us CONTACT US Note: Below contact form is for testing purpose. GET IN TOUCH FEEDBACK FOR US We really appreciate your response to our website. Kindly share your feedback with us at feedback@automationexercise.com. If you have any suggestion areas or improvements, do let us know. We will definitely work on it. Thank you SUBSCRIPTION Get the most recent updates from our site and be updated your self... Copyright © 2021 All rights reserved'); // adjust text as per UI
+});
